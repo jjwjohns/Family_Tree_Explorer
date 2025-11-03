@@ -82,8 +82,6 @@ erDiagram
     LOCATIONS ||--o{ PERSON_LOCATIONS : "linked in"
 ```
 
-For complete ERD documentation, see [ERD.md](ERD.md).
-
 ---
 
 ## **Planned Timeline and Goals**
