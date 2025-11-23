@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Family Tree Analyzer",
+  "version": "1.0.0",
+  "description": "Parses and analyzes a 10-generation FamilySearch family tree and provides custom genealogy tools.",
+  
+  "permissions": [
+    "storage",
+    "scripting",
+    "tabs"
+  ],
+
+  "host_permissions": [
+    "https://www.familysearch.org/*"
+  ],
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Family Tree Analyzer"
+  },
+
+  "background": {
+    "service_worker": "service_worker.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.familysearch.org/tree/person/*",
+        "https://www.familysearch.org/tree/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
