@@ -3,7 +3,7 @@
   "name": "Family Tree Analyzer",
   "version": "1.0.0",
   "description": "Parses and analyzes a 10-generation FamilySearch family tree and provides custom genealogy tools.",
-  
+
   "permissions": [
     "storage",
     "scripting",
@@ -11,7 +11,7 @@
   ],
 
   "host_permissions": [
-    "https://www.familysearch.org/*"
+    "*://*.familysearch.org/*"
   ],
 
   "action": {
@@ -25,10 +25,7 @@
 
   "content_scripts": [
     {
-      "matches": [
-        "https://www.familysearch.org/tree/person/*",
-        "https://www.familysearch.org/tree/*"
-      ],
+      "matches": ["*://*.familysearch.org/*"],
       "js": ["content.js"],
       "run_at": "document_idle"
     }
