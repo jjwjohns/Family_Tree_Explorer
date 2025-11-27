@@ -11,7 +11,14 @@
   ],
 
   "host_permissions": [
-    "https://www.familysearch.org/en/tree/*"
+    "*://www.familysearch.org/*"
+  ],
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["injected.js"],
+      "matches": ["*://www.familysearch.org/*"]
+    }
   ],
 
   "action": {
@@ -21,7 +28,7 @@
 
   "content_scripts": [
     {
-      "matches": ["https://www.familysearch.org/en/tree/*"],
+      "matches": ["*://www.familysearch.org/*"],
       "js": ["content.js"],
       "run_at": "document_idle"
     }
