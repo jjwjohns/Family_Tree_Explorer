@@ -11,7 +11,7 @@
   ],
 
   "host_permissions": [
-    "*://*.familysearch.org/*"
+    "https://www.familysearch.org/en/tree/*"
   ],
 
   "action": {
@@ -19,13 +19,9 @@
     "default_title": "Family Tree Analyzer"
   },
 
-  "background": {
-    "service_worker": "service_worker.js"
-  },
-
   "content_scripts": [
     {
-      "matches": ["*://*.familysearch.org/*"],
+      "matches": ["https://www.familysearch.org/en/tree/*"],
       "js": ["content.js"],
       "run_at": "document_idle"
     }
