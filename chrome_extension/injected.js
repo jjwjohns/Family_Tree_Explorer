@@ -14,10 +14,10 @@ function post(msg) {
 async function fetchAncestry(pid) {
   if (!pid) return;
 
-  const url = `/service/tree/tree-data/r9/portrait-pedigree/${pid}?numGenerations=8&includeCountries=true&includeRecordHints=true&includeSources=true&includeParentHints=true&includePhotos=false&includeMarriages=false`;
+  const url = `/service/tree/tree-data/r9/portrait-pedigree/${pid}?numGenerations=9&includeCountries=true&includeRecordHints=true&includeSources=true&includeParentHints=true&includePhotos=false&includeMarriages=false`;
 
   try {
-    console.log("Fetching 7-gen tree:", url);
+    console.log("Fetching ancestry tree:", url);
     const res = await fetch(url, { method: "GET" });
 
     if (!res.ok) {
