@@ -5,3 +5,6 @@
 | 11/22/2025 | Inspected familysearch.org to better understand how to interact with it | 1 |
 | 11/23/2025 | Bones of a chrome extension | 1 |
 | 11/27/2025 | Set up injection script to fetch and store 7 generation ancestry | 4 |
+| 11/27/2025 | Worked on popup options | 2.5 |
+
+total = 11
