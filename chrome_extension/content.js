@@ -1,4 +1,4 @@
-// content.js
+// If this becomes a published extension, this content script should use official developer APIs and not injection.
 console.log("content script loaded");
 
 (function injectInjectedScript() {
@@ -25,13 +25,8 @@ window.addEventListener("message", (event) => {
     const { personId, tree } = data;
     console.log("Received ancestry for:", personId, tree);
 
-    chrome.storage.local.get(["trees"], (res) => {
-      const trees = res.trees || {};
-      trees[personId] = tree;
-
-      chrome.storage.local.set({ trees }, () => {
-        console.log("Stored ancestry for:", personId);
-      });
+    chrome.storage.local.set({ currentTree: tree }, () => {
+        console.log("Stored current ancestry");
     });
   }
 
