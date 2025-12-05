@@ -28,15 +28,50 @@ async function estimateAncestry() {
     }
     console.log("Estimating ancestry...");
 
+    // const coupleId = tree["ancestors"][0].coupleId;
+
+    // gender = getGenderFromCoupleId(coupleId);
+
     ancestors = tree["ancestors"];
-    first_ancestor = tree["ancestors"][0][0];
-    id = tree["ancestors"][0][0].coupleId;
-    console.log("Current Person ID:", id);
-    console.log("First Ancestor Data:", first_ancestor);
-    console.log("Total Ancestors Retrieved:", ancestors.length);
-    console.log("Full Ancestor List:", ancestors);
-    console.log("Tree Data:", tree);
-    // Implementation for ancestry estimation goes here
+    greats = tree["ancestors"][3];
+
+    const ancestry = {};
+    let i = 0;
+    for (const [key, great] of greats.entries()) {
+        if (!great?.coupleId) {
+            continue;
+        }
+        if (i++ >= 4) break;
+        const origin1 = great?.parent1?.originCountry ?? "Unknown";
+        ancestry[origin1] = (ancestry[origin1] || 0) + 1;
+
+        const origin2 = great?.parent2?.originCountry ?? "Unknown";
+        ancestry[origin2] = (ancestry[origin2] || 0) + 1;
+    }
+
+    console.log("Ancestry counts:", ancestry);
+    const percentages = {};
+
+    for (const [country, count] of Object.entries(ancestry)) {
+        percentages[country] = (count / 8 * 100).toFixed(1);
+    }
+
+    console.log("Ancestry percentages:", percentages);
+
+    const sorted = Object.entries(percentages)
+    .sort((a, b) => parseFloat(b[1]) - parseFloat(a[1]));
+
+    console.log("Sorted ancestry percentages:", sorted);
+    displayAncestry(sorted);
+
+}
+
+function displayAncestry(sorted) {
+    let text = "Estimated Ancestry:\n\n";
+    for (const [country, pct] of sorted) {
+        text += `${country}: ${pct}%\n`;
+    }
+    display(text);
 }
 
 async function askChatGPT() {

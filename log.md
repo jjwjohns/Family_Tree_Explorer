@@ -6,5 +6,6 @@
 | 11/23/2025 | Bones of a chrome extension | 1 |
 | 11/27/2025 | Set up injection script to fetch and store generational ancestry | 4 |
 | 11/27/2025 | Worked on popup options | 2.5 |
+| 12/5/2025 | V1 for asking chat and ancestry estimate | 2 |
 
-Total = 12
+Total = 14
