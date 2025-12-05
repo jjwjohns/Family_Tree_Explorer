@@ -11,7 +11,8 @@
   ],
 
   "host_permissions": [
-    "*://www.familysearch.org/*"
+    "*://www.familysearch.org/*",
+    "https://api.openai.com/*"
   ],
   
   "web_accessible_resources": [
@@ -32,5 +33,9 @@
       "js": ["content.js"],
       "run_at": "document_idle"
     }
-  ]
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  }
 }

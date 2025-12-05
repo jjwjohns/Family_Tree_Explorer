@@ -36,12 +36,50 @@ async function estimateAncestry() {
     console.log("Total Ancestors Retrieved:", ancestors.length);
     console.log("Full Ancestor List:", ancestors);
     console.log("Tree Data:", tree);
-
-
     // Implementation for ancestry estimation goes here
 }
 
 async function askChatGPT() {
-    console.log("Asking ChatGPT...");
-    // Implementation for ChatGPT interaction goes here
+  const userPrompt = prompt("Enter your prompt:");
+
+  if (!userPrompt) return;
+
+  const openai_api_key = await chrome.storage.sync.get("openai_api_key").then(r => r.openai_api_key);
+
+  const currentTree = await getFromStorage('currentTree');
+
+  if (!openai_api_key) {
+    display("ERROR: Missing OpenAI API key.");
+    return;
+  }
+
+  if (!currentTree) {
+    display("ERROR: No FamilySearch tree stored.");
+    return;
+  }
+
+  display("Generating response...");
+
+  chrome.runtime.sendMessage(
+    {
+      type: "generate",
+      apiKey: openai_api_key,
+      prompt: userPrompt,
+      tree: currentTree
+    },
+    (response) => {
+      if (!response?.success) {
+        display("ERROR calling OpenAI:\n" + response?.error);
+        return;
+      }
+
+      const text = response.result.choices?.[0]?.message?.content;
+
+      display(text || "No content returned.");
+    }
+  );
+}
+
+function display(msg) {
+  document.getElementById("responseBox").textContent = msg;
 }
